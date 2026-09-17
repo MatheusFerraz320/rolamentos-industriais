@@ -1,0 +1,102 @@
+---
+import Icon from './Icon.astro'
+
+interface Props {
+  type?: 'text' | 'email' | 'tel' | 'number' | 'textarea' | 'select' | 'file'
+  label: string
+  name: string
+  required?: boolean
+  placeholder?: string
+  options?: readonly string[]
+  rows?: number
+  span?: 'full' | 'half'
+}
+
+const {
+  type = 'text',
+  label,
+  name,
+  required = false,
+  placeholder,
+  options = [],
+  rows = 4,
+  span = 'half',
+} = Astro.props
+
+const inputClasses = `
+  w-full border border-neutral-gray-200 bg-neutral-light
+  px-4 py-3 font-sans text-sm text-ink
+  placeholder-neutral-gray-200/70 transition-colors
+  focus:border-accent-orange focus:outline-none
+`
+
+const isInput = (t: Props['type']): t is 'text' | 'email' | 'tel' | 'number' =>
+  t !== 'textarea' && t !== 'select' && t !== 'file'
+---
+
+<div class={span === 'full' ? 'sm:col-span-2' : ''}>
+  <label
+    for={name}
+    class="block font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-ink-soft"
+  >
+    {label} {required && <span class="text-accent-orange">*</span>}
+  </label>
+
+  {type === 'textarea' && <textarea
+    id={name}
+    name={name}
+    required={required}
+    rows={rows}
+    placeholder={placeholder}
+    class={`${inputClasses} mt-2 resize-none`}
+  ></textarea>}
+
+  {type === 'select' && (
+    <div class="relative mt-2">
+      <select
+        id={name}
+        name={name}
+        required={required}
+        class={`${inputClasses} appearance-none pr-10`}
+      >
+        <option value="" selected>
+          Selecione
+        </option>
+        {options.map((opt) => (
+          <option value={opt}>{opt}</option>
+        ))}
+      </select>
+      <Icon
+        name="chevron-down"
+        class="pointer-events-none absolute right-3.5 top-1/2 size-4 -translate-y-1/2 text-ink-soft"
+      />
+    </div>
+  )}
+
+  {type === 'file' && (
+    <label
+      for={name}
+      class="mt-2 flex cursor-pointer flex-col items-center justify-center gap-2 border border-dashed border-neutral-gray-200 bg-neutral-light px-4 py-6 text-center transition-colors hover:border-accent-orange"
+    >
+      <Icon name="upload" class="size-5 text-ink-soft" />
+      <span class="font-sans text-xs text-ink-soft">
+        Clique para anexar ou arraste um arquivo aqui
+      </span>
+      <span class="font-mono text-[10px] uppercase tracking-wide text-neutral-gray-200">
+        PDF, JPG, PNG · máx. 10MB
+      </span>
+      <input id={name} name={name} type="file" class="sr-only" />
+    </label>
+  )}
+
+  {isInput(type) && (
+    <input
+      id={name}
+      name={name}
+      type={type}
+      required={required}
+      placeholder={placeholder}
+      class={`${inputClasses} mt-2`}
+    />
+  )}
+</div>

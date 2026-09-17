@@ -1,0 +1,112 @@
+---
+import Icon from './Icon.astro'
+import Button from './Button.astro'
+
+const productLinks = [
+  { label: 'Rolamentos de Esferas', href: '#linhas' },
+  { label: 'Rolamentos de Rolos', href: '#linhas' },
+  { label: 'Rolamentos Especiais', href: '#linhas' },
+  { label: 'Rolamentos por Marca', href: '#linhas' },
+]
+
+const navLinks = [
+  { label: 'Aplicações', href: '#aplicacoes' },
+  { label: 'Sobre nós', href: '#diferenciais' },
+  { label: 'Suporte', href: '#identificar' },
+]
+---
+
+<header class="sticky top-0 z-50 border-b border-neutral-gray-200 bg-neutral-light/95 backdrop-blur-sm">
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3 lg:px-10">
+    <a href="/" class="flex shrink-0 items-center">
+      <img
+        src="/LOGO.png"
+        alt="Pioneira Rolamentos"
+        class="h-20 w-auto"
+        width="1024"
+        height="853"
+      />
+    </a>
+
+    <nav class="hidden items-center gap-8 lg:flex">
+      <div class="group relative">
+        <button class="flex items-center gap-1.5 font-sans text-[15px] font-medium text-ink transition-colors hover:text-accent-orange">
+          Produtos
+          <Icon name="chevron-down" class="size-3.5" />
+        </button>
+
+        <div class="invisible absolute left-1/2 top-full w-64 -translate-x-1/2 pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100">
+          <ul class="border border-neutral-gray-200 bg-neutral-light py-2 shadow-[0_16px_32px_-16px_rgba(18,22,27,0.25)]">
+            {productLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="block px-5 py-2.5 font-sans text-sm text-ink transition-colors hover:bg-neutral-gray-100 hover:text-accent-orange"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="font-sans text-[15px] font-medium text-ink transition-colors hover:text-accent-orange"
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <button
+        type="button"
+        aria-label="Buscar"
+        class="hidden text-ink transition-colors hover:text-accent-orange lg:block"
+      >
+        <Icon name="search" class="size-5" />
+      </button>
+
+      <Button href="#cotacao" variant="primary" class="hidden lg:inline-flex">
+        Solicite sua cotação
+      </Button>
+
+      <details class="group relative lg:hidden">
+        <summary class="flex size-10 cursor-pointer list-none items-center justify-center border border-neutral-gray-200 text-ink [&::-webkit-details-marker]:hidden">
+          <Icon name="menu" class="size-5 group-open:hidden" />
+          <Icon name="close" class="hidden size-5 group-open:block" />
+        </summary>
+
+        <div class="absolute right-0 top-full mt-3 w-72 border border-neutral-gray-200 bg-neutral-light p-5 shadow-[0_16px_32px_-16px_rgba(18,22,27,0.25)]">
+          <p class="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-ink-soft">
+            Produtos
+          </p>
+          <ul class="mt-2 mb-4 flex flex-col">
+            {productLinks.map((link) => (
+              <li>
+                <a href={link.href} class="block py-2 font-sans text-sm text-ink">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div class="flex flex-col border-t border-neutral-gray-200 pt-4">
+            {navLinks.map((link) => (
+              <a href={link.href} class="py-2 font-sans text-sm font-medium text-ink">
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          <Button href="#cotacao" variant="primary" class="mt-4 w-full">
+            Solicite sua cotação
+          </Button>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>

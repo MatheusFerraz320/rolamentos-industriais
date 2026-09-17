@@ -1,0 +1,37 @@
+---
+import Icon from './Icon.astro'
+import Eyebrow from './Eyebrow.astro'
+
+const segments = [
+  { icon: 'utensils', label: 'Indústria Alimentícia' },
+  { icon: 'disc', label: 'Cerâmica' },
+  { icon: 'settings-2', label: 'Usinagem' },
+  { icon: 'mountain', label: 'Mineração' },
+  { icon: 'file-text', label: 'Papel e Celulose' },
+  { icon: 'flame', label: 'Siderurgia' },
+  { icon: 'cpu', label: 'Automação Industrial' },
+  { icon: 'more-horizontal', label: 'Outras Aplicações Industriais' },
+] as const
+---
+
+<section class="bg-neutral-gray-100 py-24">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="max-w-2xl">
+      <Eyebrow>Segmentos</Eyebrow>
+      <h2 class="mt-4 font-display text-3xl font-semibold uppercase text-ink sm:text-4xl">
+        Soluções para manutenção industrial
+      </h2>
+    </div>
+
+    <div class="mt-10 flex flex-wrap gap-3">
+      {segments.map((segment) => (
+        <div class="flex items-center gap-3 border border-neutral-gray-200 bg-neutral-light px-5 py-3.5">
+          <Icon name={segment.icon} class="size-4 shrink-0 text-accent-orange" />
+          <span class="font-mono text-[13px] font-medium uppercase tracking-[0.04em] text-ink">
+            {segment.label}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,88 @@
+---
+import Icon from './Icon.astro'
+
+const nav = [
+  { label: 'Produtos', href: '#linhas' },
+  { label: 'Aplicações', href: '#aplicacoes' },
+  { label: 'Sobre nós', href: '#diferenciais' },
+  { label: 'Contato', href: '#cotacao' },
+]
+
+const year = new Date().getFullYear()
+---
+
+<footer class="navy-premium border-t border-white/15">
+  <div class="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-14 lg:flex-row lg:items-center lg:justify-between lg:px-10">
+    <div class="flex items-center gap-4">
+      <img
+        src="/LOGO.png"
+        alt="Pioneira Rolamentos"
+        class="h-15 w-auto brightness-0 invert"
+        width="1024"
+        height="853"
+      />
+      <p class="max-w-[220px] font-sans text-sm leading-snug text-neutral-light/55">
+        Componentes para a indústria em movimento.
+      </p>
+    </div>
+
+    <nav class="flex flex-wrap gap-x-8 gap-y-3">
+      {nav.map((link) => (
+        <a
+          href={link.href}
+          class="font-sans text-sm font-medium text-neutral-light/75 transition-colors hover:text-accent-orange"
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <a
+        href="#"
+        aria-label="LinkedIn"
+        class="flex size-9 items-center justify-center border border-neutral-light/20 text-neutral-light/70 transition-colors hover:border-accent-orange hover:text-accent-orange"
+      >
+        <Icon name="linkedin" class="size-4" />
+      </a>
+      <a
+        href="#"
+        aria-label="YouTube"
+        class="flex size-9 items-center justify-center border border-neutral-light/20 text-neutral-light/70 transition-colors hover:border-accent-orange hover:text-accent-orange"
+      >
+        <Icon name="youtube" class="size-4" />
+      </a>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6 sm:flex-row sm:items-center sm:justify-between lg:px-10">
+      <div class="flex items-center gap-3">
+        <p class="font-mono text-xs uppercase tracking-[0.06em] text-neutral-light/40">
+          © {year} Pioneira Rolamentos. Todos os direitos reservados.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-2.5 sm:items-end">
+        <div class="flex gap-6">
+          <a
+            href="#"
+            class="font-mono text-xs uppercase tracking-[0.06em] text-neutral-light/40 transition-colors hover:text-neutral-light/70"
+          >
+            Política de Privacidade
+          </a>
+          <a
+            href="#"
+            class="font-mono text-xs uppercase tracking-[0.06em] text-neutral-light/40 transition-colors hover:text-neutral-light/70"
+          >
+            Termos de Uso
+          </a>
+        </div>
+        <p class="font-sans text-xs text-neutral-light/40">
+          Desenvolvido por{' '}
+          <span class="font-semibold text-neutral-light/70">B2 Marketing Industrial</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

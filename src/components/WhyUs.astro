@@ -1,0 +1,66 @@
+---
+import Icon from './Icon.astro'
+import Eyebrow from './Eyebrow.astro'
+
+const reasons = [
+  {
+    icon: 'search',
+    title: 'Apoio na Identificação',
+    description:
+      'Auxílio para localizar e identificar o componente de acordo com as informações da aplicação.',
+  },
+  {
+    icon: 'sliders',
+    title: 'Orientação de Especificação',
+    description: 'Apoio na análise das características necessárias para a aplicação industrial.',
+  },
+  {
+    icon: 'layers',
+    title: 'Múltiplas Marcas e Soluções',
+    description: 'Atendimento de diferentes necessidades de manutenção industrial.',
+  },
+  {
+    icon: 'users',
+    title: 'Atendimento B2B',
+    description: 'Relacionamento voltado às demandas de Manutenção, PCM, Engenharia e Compras.',
+  },
+  {
+    icon: 'wrench',
+    title: 'Solução para Manutenção',
+    description:
+      'Além dos rolamentos, a Pioneira trabalha com componentes complementares para aplicações industriais.',
+  },
+] as const
+---
+
+<section id="diferenciais" class="bg-neutral-light py-24">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="max-w-2xl">
+      <Eyebrow>Por que a Pioneira</Eyebrow>
+      <h2 class="mt-4 font-display text-3xl font-semibold uppercase text-ink sm:text-4xl">
+        Mais do que encontrar um rolamento
+      </h2>
+    </div>
+
+    <div class="mt-12 border-t border-neutral-gray-200">
+      {reasons.map((reason, i) => (
+        <div class="grid grid-cols-[3rem_1fr] items-start gap-6 border-b border-neutral-gray-200 py-8 sm:grid-cols-[5rem_2.5rem_1fr] sm:items-center sm:gap-8">
+          <span class="font-display text-3xl font-semibold text-neutral-gray-200 sm:text-4xl">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+
+          <span class="hidden size-10 items-center justify-center border border-neutral-gray-200 text-accent-orange sm:flex">
+            <Icon name={reason.icon} class="size-5" />
+          </span>
+
+          <div>
+            <h3 class="font-display text-lg font-semibold text-ink">{reason.title}</h3>
+            <p class="mt-1.5 max-w-xl font-sans text-sm leading-relaxed text-ink-soft">
+              {reason.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,106 @@
+---
+import Icon from './Icon.astro'
+import Button from './Button.astro'
+import Eyebrow from './Eyebrow.astro'
+
+const quickPoints = [
+  { icon: 'layers', label: 'Rolamentos para aplicações industriais' },
+  { icon: 'badge-check', label: 'SKF, FAG, NSK e Timken' },
+  { icon: 'users', label: 'Atendimento B2B para manutenção' },
+] as const
+---
+
+<section class="relative overflow-hidden border-b border-white/15 bg-primary-dark-900">
+  <img
+    src="/heroBg.png"
+    alt="Rolamento de esferas para manutenção industrial"
+    width="1981"
+    height="794"
+    loading="eager"
+    fetchpriority="high"
+    class="absolute inset-0 z-[1] h-full w-full object-cover"
+  />
+
+  <div class="hero-navy pointer-events-none absolute inset-y-0 left-0 z-[2] w-full lg:w-[76%]"></div>
+
+  <div
+    class="pointer-events-none absolute inset-y-0 left-0 z-[3] w-full opacity-[0.35] lg:w-[62%] lg:[mask-image:linear-gradient(to_right,black_70%,transparent_100%)]"
+    style="background-image: radial-gradient(circle, rgb(255 255 255 / 0.5) 1px, transparent 1px); background-size: 28px 28px;"
+  ></div>
+
+  <svg
+    class="pointer-events-none absolute left-6 top-6 z-[4] size-4 text-white/50"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.5"
+  >
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 3v4M12 17v4M3 12h4M17 12h4" />
+  </svg>
+
+  <div class="relative z-[5] mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-32">
+    <div class="max-w-xl">
+      <Eyebrow tone="light">Pioneira Rolamentos · Manutenção Industrial</Eyebrow>
+
+      <h1 class="mt-6 font-display text-[2.5rem] font-semibold uppercase leading-[1.05] text-neutral-light sm:text-5xl lg:text-[3.25rem]">
+        Rolamentos industriais para manutenção e reposição
+      </h1>
+
+      <p class="mt-6 font-sans text-lg leading-relaxed text-neutral-light/75">
+        Soluções para diferentes aplicações industriais, com apoio na identificação, especificação e
+        cotação de rolamentos.
+      </p>
+
+      <p class="mt-4 font-sans text-[15px] leading-relaxed text-neutral-light/55">
+        Envie a referência, marca, foto ou aplicação do equipamento para nossa equipe analisar sua
+        necessidade.
+      </p>
+
+      <ul class="mt-9 flex flex-wrap gap-x-8 gap-y-3">
+        {quickPoints.map((point) => (
+          <li class="flex items-center gap-2.5 font-sans text-sm text-neutral-light/80">
+            <Icon name={point.icon} class="size-4 shrink-0 text-accent-orange" />
+            {point.label}
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+        <Button href="#cotacao" variant="primary">
+          Solicite sua cotação
+        </Button>
+        <Button href="#identificar" variant="outline-light" iconName="search" iconPosition="left">
+          Identifique seu rolamento
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-navy {
+    background:
+      radial-gradient(1100px 520px at 12% -8%, rgb(255 255 255 / 0.1) 0%, transparent 55%),
+      linear-gradient(
+        to right,
+        var(--color-primary-dark) 0%,
+        var(--color-primary-dark-800) 55%,
+        transparent 96%
+      );
+  }
+
+  @media (min-width: 1024px) {
+    .hero-navy {
+      background:
+        radial-gradient(1100px 520px at 12% -8%, rgb(255 255 255 / 0.1) 0%, transparent 55%),
+        linear-gradient(
+          to right,
+          var(--color-primary-dark) 0%,
+          var(--color-primary-dark-800) 28%,
+          var(--color-primary-dark-800) 44%,
+          transparent 62%
+        );
+    }
+  }
+</style>

@@ -1,0 +1,153 @@
+---
+import Icon from './Icon.astro'
+import Eyebrow from './Eyebrow.astro'
+import Button from './Button.astro'
+
+const lines = [
+  {
+    index: '01',
+    tag: 'Esferas',
+    title: 'Rolamentos de Esferas',
+    description:
+      'Para motores, bombas, máquinas, equipamentos rotativos e demais aplicações industriais.',
+    features: ['Rígidos de esferas', 'Contato angular', 'Autocompensadores de esferas'],
+    cta: 'Consultar rolamentos',
+    icon: 'circle',
+  },
+  {
+    index: '02',
+    tag: 'Rolos',
+    title: 'Rolamentos de Rolos',
+    description:
+      'Indicados para aplicações que envolvem cargas elevadas e diferentes condições operacionais.',
+    features: ['Rolos cilíndricos', 'Rolos cônicos', 'Autocompensadores de rolos'],
+    applications: [
+      'Redutores',
+      'Britadores',
+      'Moinhos',
+      'Máquinas industriais',
+      'Equipamentos rotativos',
+    ],
+    cta: 'Solicitar cotação',
+    icon: 'cylinder',
+  },
+  {
+    index: '03',
+    tag: 'Especiais',
+    title: 'Rolamentos para Aplicações Específicas',
+    description: 'Soluções para necessidades que exigem configurações específicas de aplicação.',
+    features: ['Rolamentos axiais', 'Rolamentos de agulhas', 'Rolamentos de precisão'],
+    cta: 'Consultar aplicação',
+    icon: 'sliders',
+  },
+] as const
+
+const brands = ['SKF', 'FAG', 'NSK', 'Timken']
+---
+
+<section id="linhas" class="bg-neutral-gray-100 py-24">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="max-w-2xl">
+      <Eyebrow>Catálogo</Eyebrow>
+      <h2 class="mt-4 font-display text-3xl font-semibold uppercase text-ink sm:text-4xl">
+        Linha de Rolamentos Industriais
+      </h2>
+      <p class="mt-4 font-sans text-base leading-relaxed text-ink-soft">
+        Atendemos diferentes necessidades de manutenção, reposição e aplicação industrial. Consulte
+        a linha adequada ao seu equipamento.
+      </p>
+    </div>
+
+    <div class="mt-16 grid gap-10 md:grid-cols-3 md:gap-8" style="perspective: 1600px">
+      {lines.map((line) => (
+        <article class="card-3d card-glare flex flex-col rounded-2xl bg-neutral-light outline outline-1 outline-neutral-gray-200 shadow-[0_24px_48px_-24px_rgba(32,56,120,0.4)] hover:shadow-[0_40px_80px_-32px_rgba(32,56,120,0.6)] hover:outline-accent-orange/40">
+          <div class="card-image-frame rounded-t-2xl">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="relative flex size-28 items-center justify-center rounded-full border border-neutral-light/20 bg-neutral-light/10 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_16px_32px_-12px_rgba(0,0,0,0.5)]">
+                <span class="absolute inset-1.5 rounded-full border border-neutral-light/15"></span>
+                <Icon
+                  name={line.icon}
+                  class="size-12 text-neutral-light/90 drop-shadow-[0_4px_8px_rgba(0,0,0,0.35)]"
+                />
+              </div>
+            </div>
+            <span class="absolute left-4 top-4 rounded-full bg-primary-dark-900/60 px-3 py-1 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-neutral-light/85 backdrop-blur-sm">
+              {line.index} · {line.tag}
+            </span>
+            <span class="absolute bottom-3 right-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-light/50">
+              Pioneira
+            </span>
+          </div>
+
+          <div class="flex flex-1 flex-col p-7">
+            <h3 class="font-display text-xl font-semibold uppercase tracking-wide text-ink">
+              {line.title}
+            </h3>
+
+            <ul class="mt-5 flex flex-col gap-2.5">
+              {line.features.map((feature) => (
+                <li class="flex items-center gap-3 font-mono text-[13px] text-ink">
+                  <span class="flex size-5 shrink-0 items-center justify-center rounded-full bg-accent-orange/10 text-accent-orange">
+                    <Icon name="check" class="size-3" />
+                  </span>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+
+            <p class="mt-5 border-t border-neutral-gray-200 pt-5 font-sans text-sm leading-relaxed text-ink-soft">
+              {line.description}
+            </p>
+
+            {'applications' in line && (
+              <div class="mt-5">
+                <p class="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-accent-orange">
+                  Aplicações
+                </p>
+                <ul class="mt-2.5 flex flex-wrap gap-1.5">
+                  {line.applications.map((app) => (
+                    <li class="rounded border border-neutral-gray-200 px-2 py-0.5 font-mono text-[11px] text-ink-soft">
+                      {app}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div class="mt-auto pt-7">
+              <Button href="#cotacao" variant="outline-dark" class="w-full">
+                {line.cta}
+              </Button>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="navy-premium mt-px flex flex-col gap-8 rounded-2xl border border-white/20 px-8 py-10 md:flex-row md:items-center md:justify-between lg:px-10">
+      <div class="max-w-md">
+        <span class="font-mono text-xs font-medium uppercase tracking-[0.14em] text-neutral-light/55">
+          04 · Marca
+        </span>
+        <h3 class="mt-3 font-display text-xl font-semibold text-neutral-light">
+          Rolamentos por Marca
+        </h3>
+        <p class="mt-3 font-sans text-sm leading-relaxed text-neutral-light/65">
+          Consulte rolamentos das principais marcas identificadas no portfólio da Pioneira.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-3 border-y border-neutral-light/15 py-5 md:border-y-0 md:border-x md:px-8 md:py-0">
+        {brands.map((brand) => (
+          <span class="font-display text-lg font-semibold uppercase tracking-wide text-neutral-light/85">
+            {brand}
+          </span>
+        ))}
+      </div>
+
+      <Button href="#cotacao" variant="primary" class="shrink-0">
+        Enviar marca e referência
+      </Button>
+    </div>
+  </div>
+</section>

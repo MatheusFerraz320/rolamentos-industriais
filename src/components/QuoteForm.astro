@@ -1,0 +1,113 @@
+---
+import Icon from './Icon.astro'
+import Eyebrow from './Eyebrow.astro'
+import Field from './Field.astro'
+import Button from './Button.astro'
+
+const necessidades = [
+  'Comprar / cotar rolamento',
+  'Identificar rolamento',
+  'Substituir referência existente',
+  'Consultar aplicação',
+  'Outro',
+]
+
+const tipos = ['Não sei informar', 'Esferas', 'Rolos', 'Axial', 'Agulhas', 'Outro']
+
+const marcas = ['SKF', 'FAG', 'NSK', 'Timken', 'Outra', 'Não sei informar']
+
+const trust = [
+  { icon: 'clock', label: 'Atendimento especializado' },
+  { icon: 'zap', label: 'Resposta rápida' },
+  { icon: 'map-pin', label: 'Suporte em todo o Brasil' },
+] as const
+---
+
+<section id="cotacao" class="bg-neutral-light py-24">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="grid gap-px overflow-hidden border border-neutral-gray-200 bg-neutral-gray-200 lg:grid-cols-[340px_1fr]">
+      <div class="navy-premium flex flex-col justify-between p-9 lg:p-10">
+        <div>
+          <Eyebrow tone="light">Cotação</Eyebrow>
+          <h2 class="mt-4 font-display text-2xl font-semibold uppercase leading-tight text-neutral-light">
+            Solicite sua cotação de rolamentos
+          </h2>
+          <p class="mt-4 font-sans text-sm leading-relaxed text-neutral-light/65">
+            Informe os dados disponíveis sobre sua necessidade. Quanto mais informações técnicas
+            forem enviadas, mais direcionado poderá ser o atendimento.
+          </p>
+        </div>
+
+        <ul class="mt-10 flex flex-col gap-4 border-t border-neutral-light/15 pt-8">
+          {trust.map((item) => (
+            <li class="flex items-center gap-3 font-sans text-sm text-neutral-light/80">
+              <Icon name={item.icon} class="size-4 shrink-0 text-accent-orange" />
+              {item.label}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="bg-neutral-light p-9 lg:p-10">
+        <form class="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2">
+          <Field label="Empresa" name="empresa" required placeholder="Nome da sua empresa" />
+          <Field label="Nome" name="nome" required placeholder="Seu nome" />
+
+          <Field label="Cargo / Área" name="cargo" placeholder="Ex.: Manutenção, Compras" />
+          <Field
+            label="Telefone / WhatsApp"
+            name="telefone"
+            type="tel"
+            required
+            placeholder="(11) 99999-9999"
+          />
+
+          <Field
+            label="E-mail corporativo"
+            name="email"
+            type="email"
+            required
+            placeholder="seu@empresa.com.br"
+          />
+          <Field label="Cidade / Estado" name="cidade" required placeholder="Ex.: São Paulo - SP" />
+
+          <Field
+            label="Qual sua necessidade?"
+            name="necessidade"
+            type="select"
+            required
+            options={necessidades}
+            span="full"
+          />
+
+          <Field label="Tipo de rolamento" name="tipo" type="select" options={tipos} />
+          <Field label="Marca" name="marca" type="select" options={marcas} />
+
+          <Field label="Referência / Código" name="referencia" placeholder="Ex.: 6205" />
+          <Field
+            label="Equipamento / Aplicação"
+            name="equipamento"
+            placeholder="Ex.: Motor elétrico"
+          />
+
+          <Field
+            label="Mensagem"
+            name="mensagem"
+            type="textarea"
+            placeholder="Descreva sua necessidade, se souber mais detalhes."
+            span="full"
+          />
+
+          <div class="flex flex-col gap-3 sm:col-span-2">
+            <Button type="submit" variant="primary" class="w-full sm:w-auto">
+              Solicitar cotação
+            </Button>
+            <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-ink-soft">
+              Atendimento destinado a empresas e aplicações industriais.
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

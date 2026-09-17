@@ -1,0 +1,137 @@
+---
+import Icon from './Icon.astro'
+import Eyebrow from './Eyebrow.astro'
+import Button from './Button.astro'
+import BearingDiagram from './BearingDiagram.astro'
+
+const steps = [
+  {
+    step: '01',
+    tag: 'Informe',
+    icon: 'file-text',
+    title: 'Reúna o que você sabe',
+    description: 'Referência, marca, foto, medidas ou o equipamento em que o rolamento é usado.',
+    chips: ['Referência', 'Marca', 'Foto'],
+  },
+  {
+    step: '02',
+    tag: 'Envie',
+    icon: 'hash',
+    title: 'Envie os dados disponíveis',
+    description: 'Nem tudo precisa estar legível — quanto mais detalhes, mais certeza na análise.',
+    chips: ['Medidas', 'Modelo', 'Aplicação'],
+  },
+  {
+    step: '03',
+    tag: 'Análise',
+    icon: 'search',
+    title: 'Nossa equipe identifica',
+    description: 'Avaliação técnica para localizar e especificar o componente do seu equipamento.',
+    chips: ['Cruzamento técnico', 'Especificação'],
+  },
+  {
+    step: '04',
+    tag: 'Solução',
+    icon: 'badge-check',
+    title: 'Receba a resposta',
+    description:
+      'Identificação do rolamento e orientação de cotação para a sua aplicação industrial.',
+    chips: ['Identificação', 'Cotação'],
+  },
+] as const
+
+const ticks = Array.from({ length: 7 })
+---
+
+<section id="identificar" class="navy-premium border-y border-white/15 py-24">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="mx-auto max-w-2xl text-center">
+      <Eyebrow tone="light">Identificação técnica</Eyebrow>
+
+      <h2 class="mt-4 font-display text-3xl font-semibold uppercase text-neutral-light sm:text-4xl">
+        Precisa identificar um rolamento?
+      </h2>
+
+      <p class="mt-5 font-sans text-base leading-relaxed text-neutral-light/70">
+        Nem sempre a referência está legível ou o modelo correto é conhecido. Em 4 etapas, nossa
+        equipe identifica o componente necessário para sua aplicação.
+      </p>
+
+      <div class="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <Button href="#cotacao" variant="primary">
+          Enviar dados do rolamento
+        </Button>
+        <Button href="#cotacao" variant="outline-light" iconName="search" iconPosition="left">
+          Consultar especialista
+        </Button>
+      </div>
+    </div>
+
+    <div class="relative mt-16">
+      <div class="pointer-events-none absolute -inset-x-6 -top-8 bottom-0 -z-10 rounded-[2rem] bg-gradient-to-br from-primary-dark-900/55 via-primary-dark/20 to-accent-orange/20 blur-3xl"></div>
+
+      <div class="panel-tech rounded-2xl border border-dashed border-neutral-light/25 bg-primary-dark/70 p-6 backdrop-blur-sm sm:p-8 lg:p-10">
+        <div class="relative">
+          <BearingDiagram class="pointer-events-none absolute -top-10 -right-24 hidden w-[380px] text-neutral-light opacity-[0.06] xl:block" />
+
+          <div class="pointer-events-none absolute top-[3.5rem] hidden xl:block">
+            <span class="block h-px w-full border-t border-dashed border-accent-orange/40"></span>
+          </div>
+
+          <ul class="relative grid gap-5 sm:grid-cols-2 xl:grid-cols-4 xl:gap-4">
+            {steps.map((step) => (
+              <li class="group relative flex flex-col rounded-xl border border-neutral-light/15 bg-primary-dark-900/50 p-6 transition-all duration-200 hover:-translate-y-1 hover:border-accent-orange/50 hover:bg-primary-dark-900/80">
+                <span class="absolute top-4 right-5 font-display text-5xl font-bold text-neutral-light/5 transition-colors duration-200 group-hover:text-accent-orange/15">
+                  {step.step}
+                </span>
+
+                <span class="flex size-14 items-center justify-center rounded-xl bg-accent-orange/15 text-accent-orange ring-1 ring-accent-orange/40 transition-all duration-200 group-hover:bg-accent-orange group-hover:text-neutral-light">
+                  <Icon name={step.icon} class="size-6" />
+                </span>
+
+                <div class="mt-5 flex items-center gap-2">
+                  <span class="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-accent-orange">
+                    {step.step} · {step.tag}
+                  </span>
+                </div>
+
+                <h3 class="mt-1.5 font-display text-lg font-semibold text-neutral-light">
+                  {step.title}
+                </h3>
+                <p class="mt-2 font-sans text-sm leading-relaxed text-neutral-light/65">
+                  {step.description}
+                </p>
+
+                <ul class="mt-5 flex flex-wrap gap-2">
+                  {step.chips.map((chip) => (
+                    <li class="rounded-full border border-neutral-light/15 px-2.5 py-1 font-mono text-[10px] tracking-wide text-neutral-light/70 uppercase transition-colors duration-200 group-hover:border-accent-orange/40">
+                      {chip}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-8 flex items-center gap-5 rounded-xl border border-dashed border-neutral-light/15 bg-primary-dark-900/40 px-5 py-3.5">
+            <span class="font-mono text-[10px] tracking-[0.18em] text-neutral-light/45 uppercase">
+              Identificação · Pioneira Rolamentos
+            </span>
+            <span class="h-px flex-1 bg-gradient-to-r from-accent-orange to-transparent"></span>
+            <span class="hidden items-center gap-1.5 sm:flex">
+              {ticks.map((_, i) => (
+                <span
+                  class:list={[
+                    'w-px bg-neutral-light/25',
+                    i % 3 === 1 ? 'h-3' : 'h-1.5',
+                    i === 6 ? 'bg-accent-orange' : '',
+                  ]}
+                ></span>
+              ))}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
