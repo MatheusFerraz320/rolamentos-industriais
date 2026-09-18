@@ -1,4 +1,7 @@
 ---
+import { getImage } from 'astro:assets'
+import heroBg from '../assets/heroBg.png'
+import logoImg from '../assets/LOGO.png'
 import '../styles/global.css'
 import { site } from '../data/site'
 
@@ -8,6 +11,11 @@ interface Props {
 }
 
 const { title = site.title, description = site.description } = Astro.props
+
+const heroPreload640 = await getImage({ src: heroBg, width: 640, format: 'webp' })
+const heroPreload1024 = await getImage({ src: heroBg, width: 1024, format: 'webp' })
+const heroPreload1981 = await getImage({ src: heroBg, width: 1981, format: 'webp' })
+const ogLogo = await getImage({ src: logoImg, width: 512, format: 'webp' })
 ---
 
 <!doctype html>
@@ -27,8 +35,16 @@ const { title = site.title, description = site.description } = Astro.props
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={site.url} />
-    <meta property="og:image" content="/LOGO.png" />
+    <meta property="og:image" content={ogLogo.src} />
 
+    <link
+      rel="preload"
+      as="image"
+      href={heroPreload1981.src}
+      imagesrcset={`${heroPreload640.src} 640w, ${heroPreload1024.src} 1024w, ${heroPreload1981.src} 1981w`}
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

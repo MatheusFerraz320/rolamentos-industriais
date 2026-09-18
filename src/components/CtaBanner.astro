@@ -1,16 +1,22 @@
 ---
+import { Picture } from 'astro:assets'
+import finalCta from '../assets/finalCta.jpg'
 import Button from './Button.astro'
 import BearingDiagram from './BearingDiagram.astro'
 ---
 
 <section class="diagonal-cut-b relative overflow-hidden py-20 pb-28 lg:py-24 lg:pb-32">
-  <img
-    src="/finalCta.jpg"
+  <Picture
+    src={finalCta}
     alt="Rolamento industrial em aplicação"
-    width="3274"
-    height="1312"
+    widths={[640, 1024, 1600]}
+    sizes="100vw"
+    formats={['avif', 'webp']}
+    fallbackFormat="webp"
     loading="lazy"
+    decoding="async"
     class="absolute inset-0 h-full w-full scale-105 object-cover blur-[3px]"
+    pictureAttributes={{ class: 'absolute inset-0 h-full w-full scale-105' }}
   />
 
   <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary-dark-900/80 via-primary-dark-900/55 to-primary-dark-800/60"></div>
